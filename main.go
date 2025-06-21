@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+    "booking-app/helper"
 )
 
 const eventTickets int = 500
@@ -18,7 +19,7 @@ func main() {
 	for {
 
 		firstName, lastName, emailAddress, userTickets := getUserInput()
-		isValidName, isValidEmail, isValidTicketNumber := validateUserInput(firstName, lastName, emailAddress, userTickets)
+		isValidName, isValidEmail, isValidTicketNumber := helper.ValidateUserInput(firstName, lastName, emailAddress, userTickets, remainingTickets)
 
 		if isValidName && isValidEmail && isValidTicketNumber {
 
