@@ -2,14 +2,22 @@ package main
 
 import (
 	"fmt"
-    "strconv"
+   // "strconv"
 )
 
 const eventTickets int = 500
 
 var eventName = "Earth Dance"
 var remainingTickets uint = 500
-var bookings = make([]map[string]string, 0)
+//var bookings = make([]map[string]string, 0)
+var bookings = make([]UserData, 0)
+
+type UserData struct {
+    firstName string
+    lastName string
+    emailAddress string
+    numberOfTickets uint
+}
 
 func main() {
 
@@ -56,7 +64,8 @@ func greetUsers() {
 func getFirstNames() []string {
 	firstNames := []string{}
 	for _, book := range bookings {
-		firstNames = append(firstNames, book["firstName"])
+		//firstNames = append(firstNames, book["firstName"])
+        firstNames = append(firstNames, book.firstName)
 	}
 	return firstNames
 
@@ -90,11 +99,17 @@ func bookTicket(userTickets uint, firstName string, lastName string, emailAddres
 	remainingTickets = remainingTickets - userTickets
 
     //create a map for a user
-    var userData = make(map[string]string)
-    userData["firstName"] = firstName
-    userData["lastName"] = lastName
-    userData["email"] = emailAddress
-    userData["no of tickets"] = strconv.FormatUint(uint64(userTickets), 10)
+    //var userData = make(map[string]string)
+    var userData = UserData {
+        firstName : firstName,
+        lastName : lastName,
+        emailAddress : emailAddress,
+        numberOfTickets: userTickets,
+    }
+   // userData["firstName"] = firstName
+    //userData["lastName"] = lastName
+    //userData["email"] = emailAddress
+    //userData["no of tickets"] = strconv.FormatUint(uint64(userTickets), 10)
 
 
 	bookings = append(bookings, userData)
